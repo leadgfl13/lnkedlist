@@ -11,13 +11,24 @@
 	</body>
 
 	<script>
+		class node {
+			constructor(value = null, next = null) {
+				this.value = value;
+				this.next = next;
+			}
+		}
+
 		class linkedList {
-			constructor(thing1, thing1) {
-				this.thing1 = thing1;
-				this.thing1 = thing2;
+			constructor(beginning = null) {
+				this.beginning = beginning;
 			}
 
-			append(value) {} //adds a new node witha  value to end of list
+			append(value) {
+				if (!this.beginning) {
+					this.beginning = new node(value);
+					return this;
+				}
+			} //adds a new node witha  value to end of list
 			prepend(value) {} //adds a new node witha  value to start of list
 			size() {} //returns the number of nodes in the list
 			head() {} //returns first node
@@ -29,14 +40,10 @@
 			toString() {} //represents your LinkedList objects as strings, so you can print them out and preview them in the console
 		}
 
-		class node {
-			constructor(thing1, thing1) {
-				this.thing1 = thing1;
-				this.thing1 = thing2;
-			}
+		const list = new linkedList();
 
-			method1() {}
-			method2() {}
-		}
+		list.append("dog");
+
+		console.log(list);
 	</script>
 </html>
