@@ -11,7 +11,7 @@
 	</body>
 
 	<script>
-		class node {
+		class Node {
 			constructor(value = null, next = null) {
 				this.value = value;
 				this.next = next;
@@ -21,6 +21,7 @@
 		class linkedList {
 			constructor(beginning = null) {
 				this.beginning = beginning;
+				this.size = 0;
 			}
 
 			append(value) {
@@ -29,7 +30,19 @@
 					return this;
 				}
 			} //adds a new node witha  value to end of list
-			prepend(value) {} //adds a new node witha  value to start of list
+			prepend(value) {
+				let node = new Node(value);
+				if (this.size === 0) {
+					console.log("no size");
+					this.head = node;
+				} else {
+					console.log("there is a size");
+					node.next = this.head;
+					this.head = node;
+				}
+				this.size++;
+			}
+			//adds a new node witha  value to start of list
 			size() {} //returns the number of nodes in the list
 			head() {} //returns first node
 			tail() {} //returns last node
@@ -41,8 +54,8 @@
 		}
 
 		const list = new linkedList();
-
-		list.append("dog");
+		list.prepend("cat");
+		list.prepend("dog");
 
 		console.log(list);
 	</script>
