@@ -19,8 +19,8 @@
 		}
 
 		class linkedList {
-			constructor(beginning = null) {
-				this.beginning = beginning;
+			constructor(head = null) {
+				this.head = head;
 				this.size = 0;
 			}
 
@@ -43,8 +43,13 @@
 				this.size++;
 			}
 			//adds a new node witha  value to start of list
-			size() {} //returns the number of nodes in the list
-			head() {} //returns first node
+			size() {
+				return this.size;
+			} //returns the number of nodes in the list
+			head() {
+				if (!this.head) return null;
+				else return this.head;
+			} //returns first node
 			tail() {} //returns last node
 			at(index) {} //returns the specifided node
 			pop() {} //returns the last element
@@ -56,7 +61,10 @@
 		const list = new linkedList();
 		list.prepend("cat");
 		list.prepend("dog");
+		list.prepend("bird");
 
 		console.log(list);
+		console.log(list.size);
+		console.log(list.head);
 	</script>
 </html>
