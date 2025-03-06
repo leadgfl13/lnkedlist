@@ -19,9 +19,10 @@
 		}
 
 		class linkedList {
-			constructor(head = null) {
+			constructor(head = null, tail = null) {
 				this.head = head;
 				this.size = 0;
+				this.tail = tail;
 			}
 
 			append(value) {
@@ -33,10 +34,8 @@
 			prepend(value) {
 				let node = new Node(value);
 				if (this.size === 0) {
-					console.log("no size");
 					this.head = node;
 				} else {
-					console.log("there is a size");
 					node.next = this.head;
 					this.head = node;
 				}
@@ -49,11 +48,40 @@
 			getHead() {
 				if (!this.head) {
 					console.log("there is no head");
-				} else return this.head;
+				} else return this.head.value;
 			} //returns first node
-			tail() {} //returns last node
+			getTail() {
+				if (this.size === 0) {
+					console.log("Nothing here");
+				} else {
+					let currentnode = this.head;
+					while (currentnode) {
+						if (!currentnode.next) {
+							console.log(currentnode.value);
+							return;
+						} else {
+							currentnode = currentnode.next;
+						}
+					}
+				}
+			}
+			//returns last node
 			at(index) {} //returns the specifided node
-			pop() {} //returns the last element
+			pop() {
+				if (this.size === 0) {
+					console.log("Nothing here");
+				} else {
+					let currentnode = this.head;
+					while (currentnode) {
+						if (!currentnode.next) {
+							console.log(currentnode.value);
+							return;
+						} else {
+							currentnode = currentnode.next;
+						}
+					}
+				}
+			} //returns the last element
 			contains(value) {} //returns true if the passed in value is in the list and otherwise returns false.
 			find(value) {} //returns the index of the node containing value, or null if not found.
 			toString() {
@@ -66,19 +94,21 @@
 						listvalues += `(${currentnode.value})` + "-> ";
 						currentnode = currentnode.next;
 					}
+					listvalues += "null";
 					console.log(listvalues);
 				}
 			} //represents your LinkedList objects as strings, so you can print them out and preview them in the console
 		}
 
 		const list = new linkedList();
-		list.prepend("cat");
-		list.prepend("dog");
+		//list.prepend("hamster");
+		//list.prepend("cat");
 		list.prepend("bird");
-
-		console.log(list);
-		console.log(list.getSize());
-		list.getHead();
+		list.prepend("hamster");
+		list.prepend("dog");
 		list.toString();
+		console.log(list.getHead());
+
+		list.getTail();
 	</script>
 </html>
