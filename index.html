@@ -113,7 +113,16 @@
 					listvalues += "null";
 					console.log(listvalues);
 				}
-			} //represents your LinkedList objects as strings, so you can print them out and preview them in the console
+			}
+			insert(value, index) {
+				let current = new Node(value);
+				if (index < 0 || index > this.size) {
+					return;
+				}
+				if (index === 0) {
+					this.prepend(value);
+				}
+			}
 		}
 
 		const list = new linkedList();
@@ -126,6 +135,8 @@
 		console.log(list.contains("dog"));
 		console.log(list.contains("poo"));
 		console.log(list.contains("dog"));
+		list.insert("whale", 0);
+		list.toString();
 
 		list.getTail();
 	</script>
