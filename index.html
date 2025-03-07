@@ -99,7 +99,16 @@
 					if (current.value === check.value) return true;
 					else return false;
 			} //returns true if the passed in value is in the list and otherwise returns false.
-			find(value) {} //returns the index of the node containing value, or null if not found.
+			find(value) {
+				let previous = this.head;
+				for (let i = 0; i < this.size; i++) {
+					if (value === previous.value) return i;
+					else {
+						previous = previous.next;
+					}
+				}
+				return false;
+			} //returns the index of the node containing value, or null if not found.
 			toString() {
 				if (this.size === 0) {
 					console.log("Nothing here");
@@ -140,12 +149,12 @@
 		list.prepend("hamster");
 		list.prepend("dog");
 		list.append("weiner");
-		console.log(list.contains("dog"));
-		console.log(list.contains("poo"));
-		console.log(list.contains("dog"));
+
 		list.insert("whale", 0);
 		list.toString();
-		list.insert("cobra");
-		list.toString();
+		console.log(list.find("whale"));
+
+		console.log(list.find("bird"));
+		console.log(list.find("doog"));
 	</script>
 </html>
