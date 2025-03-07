@@ -92,7 +92,13 @@
 					}
 				}
 			} //returns the last element
-			contains(value) {} //returns true if the passed in value is in the list and otherwise returns false.
+			contains(value) {
+				let check = new Node(value);
+				let current = this.head;
+				while (current)
+					if (current.value === check.value) return true;
+					else return false;
+			} //returns true if the passed in value is in the list and otherwise returns false.
 			find(value) {} //returns the index of the node containing value, or null if not found.
 			toString() {
 				if (this.size === 0) {
@@ -117,8 +123,9 @@
 		list.prepend("hamster");
 		list.prepend("dog");
 		list.append("weiner");
-		list.toString();
-		console.log(list.getHead());
+		console.log(list.contains("dog"));
+		console.log(list.contains("poo"));
+		console.log(list.contains("dog"));
 
 		list.getTail();
 	</script>
