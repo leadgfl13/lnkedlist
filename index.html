@@ -76,7 +76,16 @@
 				}
 			}
 			//returns last node
-			at(index) {} //returns the specifided node
+			at(value) {
+				let previous = this.head;
+				for (let i = 0; i < this.size; i++) {
+					if (value === previous.value) return previous;
+					else {
+						previous = previous.next;
+					}
+				}
+				return false;
+			} //returns the specifided node
 			pop() {
 				if (this.size === 0) {
 					console.log("Nothing here");
@@ -107,7 +116,7 @@
 						previous = previous.next;
 					}
 				}
-				return false;
+				return null;
 			} //returns the index of the node containing value, or null if not found.
 			toString() {
 				if (this.size === 0) {
@@ -156,5 +165,6 @@
 
 		console.log(list.find("bird"));
 		console.log(list.find("doog"));
+		console.log(list.at("dog"));
 	</script>
 </html>
