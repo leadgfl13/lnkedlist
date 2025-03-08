@@ -86,21 +86,26 @@
 				}
 				return false;
 			} //returns the specifided node
-			pop() {
+			popOff() {
 				if (this.size === 0) {
 					console.log("Nothing here");
 				} else {
 					let currentnode = this.head;
-					while (currentnode) {
-						if (!currentnode.next) {
-							console.log(currentnode.value);
-							return;
-						} else {
-							currentnode = currentnode.next;
-						}
+					for (let i = 0; i < this.size; i++) {
+						currentnode = currentnode.next;
 					}
+					console.log(currentnode);
+					delete currentnode.value;
+					delete currentnode.next;
+					this.size--;
+					currentnode = this.head;
+					for (let i = 0; i < this.size; i++) {
+						currentnode = currentnode.next;
+					}
+					currentnode.next = null;
 				}
-			} //returns the last element
+			}
+			//returns the last element
 			contains(value) {
 				let check = new Node(value);
 				let current = this.head;
@@ -159,12 +164,8 @@
 		list.prepend("dog");
 		list.append("weiner");
 
-		list.insert("whale", 0);
 		list.toString();
-		console.log(list.find("whale"));
-
-		console.log(list.find("bird"));
-		console.log(list.find("doog"));
-		console.log(list.at("dog"));
+		list.popOff();
+		list.toString();
 	</script>
 </html>
