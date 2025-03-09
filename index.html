@@ -157,14 +157,22 @@
 			}
 
 			removeAt(index) {
+				let current = this.head;
 				if (index < 0 || index > this.size) {
 					return;
 				}
 				if (index === 0) {
-					let current = this.head;
 					current = current.next;
 					delete this.head;
 					this.head = current;
+				} else {
+					for (let i = 0; i < index - 1; i++) {
+						current = current.next;
+					}
+					let next = current.next;
+					let next2 = next.next;
+					delete current.next;
+					current.next = next2;
 				}
 			}
 		}
@@ -176,10 +184,8 @@
 		list.prepend("hamster");
 		list.prepend("dog");
 		list.append("weiner");
-
 		list.toString();
-		list.popOff();
-		list.removeAt(0);
+		list.removeAt(1);
 		list.toString();
 	</script>
 </html>
