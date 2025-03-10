@@ -165,6 +165,7 @@
 					current = current.next;
 					delete this.head;
 					this.head = current;
+					this.size--;
 				} else {
 					for (let i = 0; i < index - 1; i++) {
 						current = current.next;
@@ -173,8 +174,113 @@
 					let next2 = next.next;
 					delete current.next;
 					current.next = next2;
+					this.size--;
 				}
 			}
+		}
+
+		class Listy {
+			constructor(size, head = null, tail = null) {
+				this.size = 0;
+				this.head = head;
+				this.tail = tail;
+			}
+			getTail() {
+				let current = this.head;
+				for (let i = 0; i < this.size - 1; i++) {
+					current = current.next;
+				}
+				return current;
+			}
+
+			getSize() {
+				return this.size;
+			}
+			prepend(value) {
+				let node = makeNode2(value);
+				if (this.size === 0) {
+					this.head = node;
+				} else {
+					node.next = this.head;
+					this.head = node;
+				}
+				this.size++;
+			}
+
+			toString() {
+				let current = this.head;
+				let listvalues = "";
+				while (current) {
+					listvalues += `(${current.value}) --> `;
+					current = current.next;
+				}
+				listvalues += "null";
+				return listvalues;
+			}
+
+			append(value) {
+				let node = makeNode2(value);
+				if (this.size === 0) {
+					this.head = node;
+				} else {
+					let current = this.head;
+					while (current) {
+						if (!current.next) {
+							current.next = node;
+							return;
+						} else {
+							current = current.next;
+						}
+					}
+				}
+				this.size++;
+			}
+
+			insertAt(value, index) {
+				if (index < 0 || index > this.size) {
+					console.log("Wont fit, error");
+				}
+				if (index === 0) {
+					this.prepend(value);
+				} else {
+					let node = makeNode2(value);
+					let current = this.head;
+					for (let i = 0; i < index - 1; i++) {
+						current = current.next;
+					}
+					node.next = current.next;
+					current.next = node;
+					this.size++;
+				}
+			}
+
+			removeAt(index) {
+				let current = this.head;
+				if (index < 0 || index > this.size) {
+					console.log("Wont fit, error");
+					return;
+				}
+				if (index === 0) {
+					current = current.next;
+					delete this.head;
+					this.head = current;
+					this.size--;
+					return;
+				} else {
+					for (let i = 0; i < index - 1; i++) {
+						current = current.next;
+					}
+					let removenode = current.next;
+					current.next = removenode.next;
+				}
+			}
+		}
+
+		function makeNode2(value, next = null) {
+			return {
+				value: value,
+				next: next,
+			};
 		}
 
 		const list = new linkedList();
@@ -185,7 +291,25 @@
 		list.prepend("dog");
 		list.append("weiner");
 		list.toString();
+		console.log(list.getSize());
 		list.removeAt(1);
 		list.toString();
+		console.log(list.getSize());
+
+		const list2 = new Listy();
+		list2.prepend("worm");
+		list2.prepend("horse");
+		list2.prepend("piglet");
+		list2.prepend("penguin");
+
+		console.log(list2);
+		console.log(list2.toString());
+		console.log(list2.getTail());
+		console.log(list2.getSize());
+		list2.append("dolphin");
+		list2.insertAt("moo", 2);
+		console.log(list2.toString());
+		list2.removeAt(2);
+		console.log(list2.toString());
 	</script>
 </html>
